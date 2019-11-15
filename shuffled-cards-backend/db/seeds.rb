@@ -21,9 +21,9 @@ def make_users_and_decks
 end
 
 def make_cards
-    50.times do
-        Card.create(name: "#{Faker::Creature::Animal.name}", mana_cost: rand(1..8), health_points: rand(1..4), attack: rand(1..8), card_effect:"cool", card_description: "awesome",card_img: "coo")
-    end
+    string_response = RestClient.get("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", headers={'x-rapidapi-host' => 'omgvamp-hearthstone-v1.p.rapidapi.com', 'x-rapidapi-key' => 'ec39913906mshf4648972b6e832fp1b2936jsn6105500e65f5'})
+    response = JSON.parse(response)
+    byebug
 end
 
 def make_collections
