@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-    has_one :deck
+    has_one :deck  
 end

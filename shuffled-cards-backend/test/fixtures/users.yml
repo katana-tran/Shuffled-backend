@@ -2,12 +2,14 @@
 
 one:
   username: MyString
+  password_digest: MyString
   display_name: MyString
   avatar_picture: MyString
-  coins: 1
+  coin: 1
 
 two:
   username: MyString
+  password_digest: MyString
   display_name: MyString
   avatar_picture: MyString
-  coins: 1
+  coin: 1
