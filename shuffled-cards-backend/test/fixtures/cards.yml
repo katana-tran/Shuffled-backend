@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  mana_cost: 1
+  health_points: 1
+  attack: 1
+  card_effect: MyString
+  card_description: MyString
+  card_img: MyString
+
+two:
+  name: MyString
+  mana_cost: 1
+  health_points: 1
+  attack: 1
+  card_effect: MyString
+  card_description: MyString
+  card_img: MyString
