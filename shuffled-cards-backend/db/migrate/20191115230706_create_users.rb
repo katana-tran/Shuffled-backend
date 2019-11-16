@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :password_digest
       t.string :display_name
       t.string :avatar_picture
-      t.integer :coin
+      t.integer :coins
 
       t.timestamps
     end
