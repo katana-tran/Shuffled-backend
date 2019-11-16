@@ -1,36 +1,38 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+
 
   def index
-       render :json => User.all
+    @users = User.all
+    userRender = @users.map{|user| jawn = {id: user.id, username:user.username, decks:user.deck}}
+    render json: userRender, except: [:created_at, :updated_at]
    end
 
    def show
-       @user = User.find(params[:id])
-       render :json => @user
-   end
-
-   def login
-       @username = params[:username].downcase
-       @user = User.where('lower(username) = ?', @username).first
-       render json: @user
+     @user = User.find_by(id: params[:id])
+     userRender = {id: @user.id, username: @user.username, deck: @user.deck}
+     render json: userRender, except: [:created_at, :updated_at]
    end
 
    def create
-       @user = User.create(user_params)
-       if @user.valid?
-           @token = encode_token(user_id: @user.id)
-           render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
-       else
-           render json: {error: "Failed to create user."}, status: :not_acceptable
-       end
-   end
+     @user = User.new(
+      username: params[:username],
+      password_digest: params[:password],
+      display_name: params[:display_name],
+      avatar_picture: params[:avatar_picture],
+      coins: 30,
+    )
+    if @user.save
+      render json: @user, except: [:created_at, :updated_at]
+
+    else
+      puts "in error block"
+      render json: {message: "There was an error", success: false, data: @user.errors}, status: 406
+    end
+  end
 
 
-  private
 
-   def user_params
-       params.require(:user).permit(:username, :password, :display_name, :avatar_picture, :coins)
-   end
+
+
 
 end
