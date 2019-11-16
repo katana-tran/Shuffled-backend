@@ -45,7 +45,7 @@ end
 
 def make_collections
     100.times do 
-        Collection.create(deck_id:rand(1..5), card_id: rand(1..50))
+        Collection.create(deck_id:rand(1..5), card_id: rand(1..238))
     end
     puts "created collections"
 end
