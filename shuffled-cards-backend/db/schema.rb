@@ -16,13 +16,16 @@ ActiveRecord::Schema.define(version: 2019_11_15_230706) do
   enable_extension "plpgsql"
 
   create_table "cards", force: :cascade do |t|
+    t.string "cardId"
     t.string "name"
+    t.string "card_type"
     t.integer "mana_cost"
     t.integer "health_points"
     t.integer "attack"
     t.string "card_effect"
     t.string "card_description"
     t.string "card_img"
+    t.string "rarity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_230706) do
     t.string "password_digest"
     t.string "display_name"
     t.string "avatar_picture"
-    t.integer "coin"
+    t.integer "coins"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
