@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'Faker'
+require 'faker'
 require 'rest-client'
 
 User.destroy_all
@@ -44,7 +44,7 @@ def make_cards
 end
 
 def make_collections
-    100.times do 
+    100.times do
         Collection.create(deck_id:rand(1..5), card_id: rand(1..238))
     end
     puts "created collections"
