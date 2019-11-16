@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'Faker'
+require 'rest-client'
 
 User.destroy_all
 Deck.destroy_all
@@ -21,9 +22,25 @@ def make_users_and_decks
 end
 
 def make_cards
-    string_response = RestClient.get("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", headers={'x-rapidapi-host' => 'omgvamp-hearthstone-v1.p.rapidapi.com', 'x-rapidapi-key' => 'ec39913906mshf4648972b6e832fp1b2936jsn6105500e65f5'})
+    response = RestClient.get("https://omgvamp-hearthstone-v1.p.rapidapi.com/cards", headers={'x-rapidapi-host' => 'omgvamp-hearthstone-v1.p.rapidapi.com', 'x-rapidapi-key' => 'ec39913906mshf4648972b6e832fp1b2936jsn6105500e65f5'})
     response = JSON.parse(response)
-    byebug
+    basic_cards = response["Basic"]
+    # classic_cards = response["Classic"]
+    basic_cards.each do |card|
+        Card.create(
+            cardId: card["cardId"],
+            name: card["name"],
+            card_type: card["type"],
+            health_points: card["health"],
+            mana_cost: card["cost"],
+            attack: card["attack"],
+            card_effect: card["text"],
+            card_description: card["flavor"],
+            card_img: card["imgGold"],
+            rarity: card["rarity"]
+        )
+    end
+    # byebug
 end
 
 def make_collections
