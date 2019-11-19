@@ -5,11 +5,11 @@ one:
   password_digest: MyString
   display_name: MyString
   avatar_picture: MyString
-  coin: 1
+  coins: 1
 
 two:
   username: MyString
   password_digest: MyString
   display_name: MyString
   avatar_picture: MyString
-  coin: 1
+  coins: 1
