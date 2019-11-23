@@ -12,7 +12,10 @@ require 'rest-client'
 User.destroy_all
 Deck.destroy_all
 Collection.destroy_all
+Chat.destroy_all
 Card.destroy_all
+Game.destroy_all
+Message.destroy_all
 
 def make_users_and_decks
     5.times do
@@ -50,6 +53,23 @@ def make_collections
     puts "created collections"
 end
 
+def make_one_game
+    Game.create(player_1:1, player_2:2, player_health_1:30, player_health_2:30)
+end
+
+def make_one_conversation
+    Chat.create(game_id: Game.all.first.id)
+end
+
+def make_messages
+    5.times do 
+        Message.create(text:"#{Faker::Creature::Animal.name}", user_id:1, chat_id:1)
+    end
+end
+
 make_users_and_decks
 make_cards
 make_collections
+make_one_game
+make_one_conversation
+make_messages
