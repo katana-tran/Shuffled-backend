@@ -8,7 +8,8 @@ class UsersController < ApplicationController
    end
 
    def show
-     @user = User.find_by(id: params[:id])
+     @user_data = decode_token(params["token"])[0]
+     @user = User.find_by(id: @user_data["id"])
      userRender = {id: @user.id, username: @user.username, coins:@user.coins, deck: @user.deck}
      render json: userRender, except: [:created_at, :updated_at]
    end

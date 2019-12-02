@@ -6,4 +6,5 @@ class MessageSerializer < ActiveModel::Serializer
       display_name: self.object.user.display_name
     }
   end
+  
 end
