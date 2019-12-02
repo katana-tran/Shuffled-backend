@@ -13,6 +13,7 @@ class AuthController < ApplicationController
       else
         head :not_found
       end
-
     end
+
+    
 end
